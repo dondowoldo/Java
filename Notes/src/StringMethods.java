@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class StringMethods {
     String language = "Java";
@@ -5,13 +6,9 @@ public class StringMethods {
     String classroom = "AVUS Botega";
 
     public static void main(String[] args) {
-        String name = "John";
-        String newName = "John";
-
-        // Both variables print out the same hashCode as both variables
-        // point at the same String saved in memory (String pool)
-            System.out.println("Hash code 1: " + name.hashCode());
-            System.out.println("Hash code 2: " + newName.hashCode());
+        // Both variables point at the same String saved in memory (String pool)
+            String name = "John";
+            String newName = "John";
 
         // STRINGBUILDER
             String animal = "Cat";
@@ -40,6 +37,33 @@ public class StringMethods {
         // Replace a piece of a String between start (inclusive) / end (exclusive) indexes.     // Output: Parrot321
             sb.replace(0, 3, "Parrot3");
             System.out.println(sb);
+
+        // METHODS OVERVIEW
+        // When stating indexes, starting index is inclusive while ending index is exclusive
+        animal = "Leopard";
+
+        System.out.println(animal.length());        // Amount of characters in a string // Output: 7
+        System.out.println(animal.substring(0, 3)); // Creates substring (startIndex(inclusive), endIndex(exclusive)) // end is optional   // Output: Leo
+
+            // StringBuilder .replace method allows us to use indexes ;; with String we have to use literal substring
+        System.out.println(sb.replace(0, 6, "Hamster"));        // SB | Replace part of a string with a new one             // Output: Hamster123
+        System.out.println(animal.replace("Leo", "Ge"));       // String | Replace part of a string with a new one      // Output: Gepard
+
+        System.out.println(animal.charAt(0));        // Gets a character at given index          // Output: L
+        System.out.println(animal.equals("Leopard"));        // Check for equality (compares values, not address)                          // Output: True
+
+        System.out.println(animal.compareTo("Gepard"));   // Compares Strings lexicographically | if < 0 => less ; if 0 => equal ; if > 0 => more   // Output: 5
+        System.out.println(animal.toLowerCase());        // Transforms the string into all lowercase                                        // Output: leopard
+        System.out.println(animal.contains("pard"));    // Checks if String contains given sequence of chars                                // Output: True
+        System.out.println(animal.startsWith("Le"));    // Checks if String starts with given sequence of chars                             // Output: True
+        System.out.println(animal.endsWith("phant"));        // Checks if String ends with given sequence of chars                          // Output: False
+        System.out.println(animal.indexOf("par"));        // Checks for a char sequence and returns an index of FIRST occurrence | -1 if not in string       // Output: 3
+        System.out.println(animal.lastIndexOf("par"));  // Checks for a char sequence and returns an index of LAST occurrence | -1 if not in string       // Output: 3
+
+        System.out.println(Arrays.toString(animal.split("")));        // Splits a string into separate characters
+                                                                            // argument for .split() method is a separator
+                                                                            // Since we used split on string with no separator in it, we use ""         // Output: [L,e,o,p,a,r,d]
+
 
         System.out.println("-----------------");
 
