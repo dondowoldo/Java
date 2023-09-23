@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayLists {
     public static void main(String[] args) {
@@ -84,6 +85,15 @@ public class ArrayLists {
             Object[] moreNums = new Object[4];
             moreNums = copyNums.toArray();
             System.out.println(Arrays.toString(moreNums));      // Output: [3, 2, 1, 4]    (as array)
+
+        // convert values into a list [1, 2, 3, 4] and add it to our nums List.
+        // Both examples do the same thing.
+            nums.addAll(Arrays.asList(1, 2, 3, 4));
+            nums.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+
+
+            List<Integer> ListExample = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+
 
                             /// DIFFERENCES
 

@@ -78,7 +78,7 @@ public class StringMethods {
 
             System.out.println();
 
-            System.out.println("Implicit call: ");
+            System.out.println("Implicit call:  ");
             System.out.println(strMethods);
     }
 
