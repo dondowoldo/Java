@@ -1,3 +1,5 @@
+package fileIO;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class FileIO {
     public static void main(String[] args) {
-        List<String> addresses = readFile("src/addresses.csv");
+        List<String> addresses = readFile("src/fileIO/addresses.csv");
         System.out.println(addresses.get(0));
         List<String> firstNames = getFirstNames(addresses);
         System.out.println(firstNames);
