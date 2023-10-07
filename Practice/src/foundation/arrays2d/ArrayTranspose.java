@@ -7,7 +7,14 @@ public class ArrayTranspose {
     // the second row becomes the second column, and so on.
 
 
-    public int[][] transpose(int[][] matrix) {
+    public int[][] transpose(int[][] matrix) throws IllegalArgumentException {
+        int initialRowLength = matrix[0].length;
+        for (int j = 0; j < matrix.length; j++) {
+            if (matrix[j].length != initialRowLength) {
+                throw new IllegalArgumentException();
+            }
+        }
+
         int[][] transposed = new int[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrix.length; i++) {
