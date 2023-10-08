@@ -1,0 +1,1 @@
+Ahoj, toto je zkouska programu, ktery nacte textovy soubor,a ulozi delku nejdelsiho slova ve vete do souboru jineho.
