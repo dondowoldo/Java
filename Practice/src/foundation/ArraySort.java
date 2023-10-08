@@ -2,7 +2,7 @@ package foundation;
 
 import java.util.Arrays;
 
-public class ArrayManipulation {
+public class ArraySort {
     // #1    Write a function that takes an arbitrarily large array of integers as a
     //       parameter and doubles each member at an even index in the array.
 
