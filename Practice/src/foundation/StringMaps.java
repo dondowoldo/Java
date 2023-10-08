@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WordFrequency {
+public class StringMaps {
     // # 1  Write a function that takes any string as a parameter and returns me a map where
     //      there is always a word - word frequency in the text. For example:
 
