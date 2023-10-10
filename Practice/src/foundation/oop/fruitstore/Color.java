@@ -1,9 +1,7 @@
 package foundation.oop.fruitstore;
 
 public class Color {
-
     private String color;
-
     private int red;
     private int green;
     private int blue;
