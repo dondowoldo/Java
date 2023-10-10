@@ -22,6 +22,8 @@ public class FileManipulation {
 
         List<String> topProducts = topProducts("west", 2);
         System.out.println(topProducts);
+
+        System.out.println(monthlyRevenue("central", 2021));
     }
 
 
@@ -72,9 +74,24 @@ public class FileManipulation {
         return topProducts;
     }
 
-    public static Map<String, Integer> monthlyRevenue(String regionName, int year) throws FileNotFoundException {
+    public static Map<String, Integer> monthlyRevenue(String regionName, int year) {
+        SalesList listOfSales = new SalesList();
+        try {
+            listOfSales = extractSales(regionName);
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+            return new HashMap<>();
+        }
+        Map<String, Integer> selected = new HashMap<>();
 
-        return new HashMap<>();
+        for (Sale s : listOfSales.getListOfSales()) {
+            if (s.getYear() == year && selected.containsKey(s.getMonth())) {
+                selected.replace(s.getMonth(), selected.get(s.getMonth()) + s.getRevenue());
+            } else if (s.getYear() == year) {
+                selected.put(s.getMonth(), s.getRevenue());
+            }
+        }
+        return selected;
     }
 
 
