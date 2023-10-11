@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Customer implements Comparable<Customer> {
     static List<Customer> customers = new ArrayList<>();
-    static List<Customer> topCustomers = new ArrayList<>();
     private List<Invoice> invoices;
     private String name;
 
@@ -40,16 +39,16 @@ public class Customer implements Comparable<Customer> {
     public static List<Customer> topCustomers() {
         Collections.sort(customers);
         List<Customer> topCustomers = new ArrayList<>();
-        int length = Math.min(customers.size(), 3);
 
+        int length = Math.min(customers.size(), 3);
         for (int i = 0; i < length; i++) {
-            topCustomers.add(customers.get(customers.size() - 1 - i));
+            topCustomers.add(customers.get(i));
         }
         return topCustomers;
     }
 
     @Override
     public int compareTo(Customer other) {
-        return this.getTotalSpent() - other.getTotalSpent();
+        return other.getTotalSpent() - this.getTotalSpent();
     }
 }
