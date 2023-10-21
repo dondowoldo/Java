@@ -20,6 +20,11 @@ public class Fruit {
         return price;
     }
 
+    public String getName() {
+        return name;
+    }
+
+
     @Override
     public String toString() {
         return  this.color + " " + this.name;
