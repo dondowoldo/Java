@@ -1,0 +1,25 @@
+table {
+    width: 400px;
+    /*border-spacing: 10px;*/
+}
+
+th, caption {
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse; /* collapses borders into one if next to each other */
+}
+
+th, td {
+    padding: 10px;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
