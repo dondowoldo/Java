@@ -4,10 +4,61 @@
     <title>Form Test</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{style.css}" />
-
 </head>
 <body>
+    <div th:if="${personList.isEmpty()}">
+        <h1> No friends,Sadge </h1>
+    </div>
+    <div th:unless="${personList.isEmpty()}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+            </tr>
+            <tr th:each="friend : ${personList}">
+                <td th:text="${friend.id}"></td>
+                <td th:text="${friend.name}"></td>
+                <td th:text="${friend.age}"></td>
+                <td th:text="${friend.gender}"></td>
+            </tr>
+        </table>
+    </div>
 
+
+    <div>
+        <form th:action="@{/form}" method="post" th:object="${newPerson}">
+            <input type="text"
+                   th:field="*{name}"
+                   required
+                   placeholder="Name goes here"
+            >
+            <input type="number"
+                   th:field="*{age}"
+                   required
+                   placeholder="How old is the friend?"
+            >
+            <input type="text"
+                   th:field="*{gender}"
+                   required
+                   placeholder="Gender here"
+            >
+            <button>Add</button>
+        </form>
+    </div>
+
+    <div th:unless="${personList.isEmpty()}">
+        <form th:action="@{/remove}" method="post">
+            <select name="id">
+                <option th:each="friend : ${personList}"
+                        th:value="${friend.id}"
+                        th:text="${friend.name}">
+                </option>
+            </select>
+            <button type="submit">Remove</button>
+        </form>
+    </div>
 
 
 </body>
