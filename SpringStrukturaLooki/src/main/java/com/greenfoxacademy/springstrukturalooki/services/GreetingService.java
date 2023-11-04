@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class GreetingService {
@@ -23,22 +24,14 @@ public class GreetingService {
     }
 
     public List<String> getFiltered(String contains, Integer min) {
-        if (contains == null && min == null) {
-            return getAll();
+        Stream<String> filtered = greetings.getGreetings().stream();
+
+        if (min != null) {
+            filtered = filtered.filter(greeting -> greeting.length() >= min);
         }
-        if (min == null && contains != null) {
-            return greetings.getGreetings().stream()
-                    .filter(greeting -> greeting.contains(contains))
-                    .collect(Collectors.toList());
+        if (contains != null) {
+            filtered = filtered.filter(greeting -> greeting.contains(contains));
         }
-        if (contains == null && min != null) {
-            return greetings.getGreetings().stream()
-                    .filter(greeting -> greeting.length() >= min)
-                    .collect(Collectors.toList());
-        }
-        return greetings.getGreetings().stream()
-                .filter(greeting -> greeting.length() >= min)
-                .filter(greeting -> greeting.contains(contains))
-                .collect(Collectors.toList());
+        return filtered.collect(Collectors.toList());
     }
 }
