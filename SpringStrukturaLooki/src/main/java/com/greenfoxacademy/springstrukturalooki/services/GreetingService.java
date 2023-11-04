@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class GreetingService {
 
     private Greetings greetings;
-    private static int viewCount = 0;
 
     @Autowired
     public GreetingService(Greetings greetings) {
@@ -42,13 +41,4 @@ public class GreetingService {
                 .filter(greeting -> greeting.contains(contains))
                 .collect(Collectors.toList());
     }
-
-    public void increaseViewCount() {
-        viewCount++;
-    }
-
-    public int getViewCount() {
-        return viewCount;
-    }
-
 }

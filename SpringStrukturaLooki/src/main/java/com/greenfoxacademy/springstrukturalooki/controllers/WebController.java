@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WebController {
     private GreetingService greetingService;
     private ColorService colorService;
+    private static int viewCount = 0;
 
     @Autowired
     public WebController(GreetingService greetingService, ColorService colorService) {
@@ -24,8 +25,8 @@ public class WebController {
                         @RequestParam(name="contains", required = false) String contains,
                         @RequestParam(name="minimum_length", required = false) Integer min) {
 
-        greetingService.increaseViewCount();
-        model.addAttribute("viewCount", greetingService.getViewCount());
+        viewCount++;
+        model.addAttribute("viewCount", viewCount);
         model.addAttribute("greetings", greetingService.getFiltered(contains, min));
         model.addAttribute("color", colorService.getRandomColor());
         return "greeting";
