@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+
+<body>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col text-center">
+            <h1 class="display-2">Pet Shelter</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <h2 class="text-primary">Available Pets</h2>
+            <table class="table border p-1 text-center">
+                <tr>
+                    <th class="bg-light">Name</th>
+                    <th class="bg-light">Type</th>
+                </tr>
+                <tr th:each="pet : ${pets}">
+                    <td th:text="${pet.name}"></td>
+                    <td th:text="${pet.type}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            <h2 class="text-primary">Happy Owners</h2>
+            <table class="table border p-1 table-striped text-center">
+                <tr>
+                    <th class="bg-light">Owner</th>
+                    <th class="bg-light">Pet name</th>
+                    <th class="bg-light">Pet type</th>
+                </tr>
+                <tr th:each="person : ${people}">
+                    <td th:if="${not #lists.isEmpty(person.pets)}" th:text="${person.name}"></td>
+                    <td th:if="${not #lists.isEmpty(person.pets)}">
+                        <ul class="list-unstyled">
+                            <li th:each="pet : ${person.pets}" th:text="${pet.name}"></li>
+                        </ul>
+                    </td>
+                    <td th:if="${not #lists.isEmpty(person.pets)}">
+                        <ul class="list-unstyled">
+                            <li th:each="pet : ${person.pets}" th:text="${pet.type}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-5">
+        <p class="text-danger text-center" th:if="${error}" th:text="${error}"></p>
+        <form th:action="@{/}" th:method="put" class="border rounded col-8">
+            <div class="row align-items-center">
+                <div class="col-5">
+                    <label class="form-label">Select Owner :
+                        <select class="form-select" name="ownerId">
+                            <option th:each="person : ${people}" th:text="${person.name}" th:value="${person.id}"></option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-5">
+                    <label class="form-label">Select Pet :
+                        <select class="form-select" name="petId">
+                            <option th:if="${not #lists.isEmpty(pets)}" th:each="pet : ${pets}" th:value="${pet.id}" th:text="${pet.name} + ' (' + ${pet.type} + ')'"></option>
+                            <option selected th:unless="${not #lists.isEmpty(pets)}" disabled >No available pets</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-success">Get pet!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row gap-2 mt-2 justify-content-center">
+        <div class="col-2 d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-primary">Add new Person</a>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-primary">Add new Pet</a>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
