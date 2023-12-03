@@ -9,7 +9,9 @@ public class DecryptCipher {
     public static void main(String[] args) {
         String text = "OR FHER GB QEVAX LBHE BINYGVAR";
 
+
         System.out.print(decrypt(text));
+
     }
 
     // takes an int parameter as to how many rotations should be done
